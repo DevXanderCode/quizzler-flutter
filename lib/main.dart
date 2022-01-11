@@ -73,6 +73,8 @@ class _QuizPageState extends State<QuizPage> {
                 bool correctAnswer = answers[questionNumber];
 
                 setState(() {
+                  print(questionNumber);
+
                   if (correctAnswer == true) {
                     scoreKeeper.add(
                       Icon(
@@ -88,7 +90,10 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     );
                   }
-                  questionNumber++;
+
+                  if (questionNumber < 2) {
+                    questionNumber++;
+                  }
                 });
               },
             ),
@@ -108,8 +113,27 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                bool correctAnswer = answers[questionNumber];
+
                 setState(() {
-                  questionNumber++;
+                  if (correctAnswer == false) {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+                  if (questionNumber != 2) {
+                    questionNumber++;
+                  }
                 });
               },
             ),
