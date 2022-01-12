@@ -31,6 +31,7 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
   void checkAnswer(bool userPickedAnswer) {
+    print(quizBrain.isFinished());
     bool correctAnswer = quizBrain.getQuestionAnswer();
     setState(() {
       if (userPickedAnswer == correctAnswer) {
