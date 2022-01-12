@@ -36,8 +36,26 @@ class _QuizPageState extends State<QuizPage> {
     bool correctAnswer = quizBrain.getQuestionAnswer();
     setState(() {
       if (quizBrain.isFinished()) {
-        Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
-            .show();
+        Alert(
+          context: context,
+          type: AlertType.success,
+          title: "Hurrayyyyy",
+          desc:
+              "You successfully completed the quizz...with a score of $quizScore",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Try Again",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                quizScore = 0;
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
         scoreKeeper = [];
         quizBrain.reset();
       } else {
